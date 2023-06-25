@@ -1,0 +1,30 @@
+float calcularMedia(int array[], int tamanho) {
+    int soma = 0;
+    float media;
+
+    for (int i = 0; i < tamanho; i++) {
+        soma += array[i];
+    }
+
+    media = (float)soma / tamanho;
+    return media;
+}
+
+int main() {
+    int valores[] = {1, 2, 3, 4, 5};
+    int tamanho = sizeof(valores) / sizeof(valores[0]);
+
+    float media = calcularMedia(valores, tamanho);
+    printf("A média é: %.2f\n", media);
+
+    return 0;
+}
+Nesse exemplo, a função calcularMedia recebe um array de inteiros e o tamanho do array como parâmetros. Ela itera sobre cada elemento do array e soma os valores. Em seguida, calcula a média dividindo a soma pelo tamanho do array. Por fim, a função retorna a média.
+
+No main(), é criado um array valores e o tamanho do array é calculado usando a fórmula sizeof(valores) / sizeof(valores[0]). Em seguida, a função calcularMedia é chamada, passando o array valores e o tamanho como argumentos. A média calculada é impressa na tela.
+
+
+
+
+
+
