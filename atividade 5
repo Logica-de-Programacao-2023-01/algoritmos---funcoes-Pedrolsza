@@ -1,0 +1,19 @@
+package main
+
+import "fmt"
+
+func findPosition(nums []int, target int) int {
+	for i, num := range nums {
+		if num == target {
+			return i
+		}
+	}
+	return -1
+}
+
+func main() {
+	nums := []int{3, 7, 2, 8, 1, 4}
+	target := 8
+	position := findPosition(nums, target)
+	fmt.Println("Posição do primeiro elemento igual a", target, ":", position)
+}
