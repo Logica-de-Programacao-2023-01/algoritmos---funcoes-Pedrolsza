@@ -1,0 +1,43 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+type IntOperation func(int) int
+
+func applyFunctionToSlice(nums []int, fn IntOperation) ([]int, error) {
+	if len(nums) == 0 {
+		return nil, errors.New("O slice está vazio")
+	}
+
+	result := make([]int, len(nums))
+	for i, num := range nums {
+		result[i] = fn(num)
+	}
+
+	return result, nil
+}
+
+func doubleValue(num int) int {
+	return num * 2
+}
+
+func main() {
+	nums := []int{1, 2, 3, 4, 5}
+	doubled, err := applyFunctionToSlice(nums, doubleValue)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Slice resultante:", doubled)
+	}
+
+	emptySlice := []int{}
+	emptyResult, err := applyFunctionToSlice(emptySlice, doubleValue)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Slice resultante:", emptyResult)
+	}
+}
