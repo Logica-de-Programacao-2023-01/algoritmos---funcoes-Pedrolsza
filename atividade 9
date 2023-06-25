@@ -1,0 +1,34 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
+
+func extractWordsFromString(str string) ([]string, error) {
+	if len(str) == 0 {
+		return nil, errors.New("A string está vazia")
+	}
+
+	words := strings.Split(str, " ")
+	return words, nil
+}
+
+func main() {
+	str := "Olá mundo, seja bem-vindo"
+	words, err := extractWordsFromString(str)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Palavras:", words)
+	}
+
+	emptyStr := ""
+	emptyResult, err := extractWordsFromString(emptyStr)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Palavras:", emptyResult)
+	}
+}
