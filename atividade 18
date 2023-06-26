@@ -1,0 +1,42 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func applyFunction(slice []int, f func(int) int) (int, error) {
+	if len(slice) == 0 {
+		return 0, errors.New("O slice está vazio")
+	}
+
+	sum := 0
+	for _, num := range slice {
+		sum += f(num)
+	}
+
+	return sum, nil
+}
+
+func double(n int) int {
+	return n * 2
+}
+
+func main() {
+	intSlice := []int{1, 2, 3, 4, 5}
+
+	doubleSum, err := applyFunction(intSlice, double)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Soma dos números duplicados:", doubleSum)
+	}
+
+	emptySlice := []int{}
+	doubleSum, err = applyFunction(emptySlice, double)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Soma dos números duplicados:", doubleSum)
+	}
+}
