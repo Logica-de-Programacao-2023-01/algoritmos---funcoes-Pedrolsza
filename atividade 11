@@ -1,0 +1,45 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"math"
+)
+
+func isPrime(num int) (bool, error) {
+	if num < 0 {
+		return false, errors.New("O número é negativo")
+	}
+
+	if num < 2 {
+		return false, nil
+	}
+
+	// Verifica se o número é divisível por algum inteiro entre 2 e sua raiz quadrada
+	limit := int(math.Sqrt(float64(num)))
+	for i := 2; i <= limit; i++ {
+		if num%i == 0 {
+			return false, nil
+		}
+	}
+
+	return true, nil
+}
+
+func main() {
+	num := 13
+	prime, err := isPrime(num)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(num, "é primo?", prime)
+	}
+
+	negativeNum := -7
+	prime, err = isPrime(negativeNum)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(negativeNum, "é primo?", prime)
+	}
+}
