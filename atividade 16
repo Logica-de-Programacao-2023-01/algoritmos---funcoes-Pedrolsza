@@ -1,0 +1,45 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
+
+func replaceVowels(str string) (string, error) {
+	if len(str) == 0 {
+		return "", errors.New("A string está vazia")
+	}
+
+	vowels := "aeiouAEIOU"
+	var replaced strings.Builder
+
+	for _, char := range str {
+		if strings.ContainsRune(vowels, char) {
+			replaced.WriteRune('*')
+		} else {
+			replaced.WriteRune(char)
+		}
+	}
+
+	return replaced.String(), nil
+}
+
+func main() {
+	str := "Hello, World!"
+
+	replacedStr, err := replaceVowels(str)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("String substituindo as vogais:", replacedStr)
+	}
+
+	emptyStr := ""
+	replacedStr, err = replaceVowels(emptyStr)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("String substituindo as vogais:", replacedStr)
+	}
+}
