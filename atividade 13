@@ -1,0 +1,42 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strings"
+	"unicode"
+)
+
+func filterUppercaseStrings(strings []string) (string, error) {
+	if len(strings) == 0 {
+		return "", errors.New("O slice está vazio")
+	}
+
+	var result strings.Builder
+	for _, str := range strings {
+		if len(str) > 0 && unicode.IsUpper(rune(str[0])) {
+			result.WriteString(str)
+			result.WriteString(" ")
+		}
+	}
+
+	return strings.TrimSpace(result.String()), nil
+}
+
+func main() {
+	strings := []string{"Olá", "mundo", "OpenAI", "GPT-3"}
+	filtered, err := filterUppercaseStrings(strings)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Strings filtradas:", filtered)
+	}
+
+	emptySlice := []string{}
+	emptyResult, err := filterUppercaseStrings(emptySlice)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Strings filtradas:", emptyResult)
+	}
+}
