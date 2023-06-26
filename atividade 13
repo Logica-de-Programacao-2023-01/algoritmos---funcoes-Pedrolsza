@@ -1,0 +1,40 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strconv"
+)
+
+func sumDigits(num int) (int, error) {
+	if num < 0 {
+		return 0, errors.New("O número é negativo")
+	}
+
+	strNum := strconv.Itoa(num)
+	sum := 0
+	for _, digit := range strNum {
+		digitValue, _ := strconv.Atoi(string(digit))
+		sum += digitValue
+	}
+
+	return sum, nil
+}
+
+func main() {
+	num := 12345
+	digitSum, err := sumDigits(num)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Soma dos dígitos:", digitSum)
+	}
+
+	negativeNum := -987
+	digitSum, err = sumDigits(negativeNum)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Soma dos dígitos:", digitSum)
+	}
+}
