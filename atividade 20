@@ -1,0 +1,40 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func filterStrings(slice []string) ([]string, error) {
+	if len(slice) == 0 {
+		return nil, errors.New("O slice está vazio")
+	}
+
+	filteredSlice := []string{}
+	for _, str := range slice {
+		if len(str) > 5 {
+			filteredSlice = append(filteredSlice, str)
+		}
+	}
+
+	return filteredSlice, nil
+}
+
+func main() {
+	strSlice := []string{"apple", "banana", "orange", "grapefruit"}
+
+	filteredStrSlice, err := filterStrings(strSlice)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Strings com mais de 5 caracteres:", filteredStrSlice)
+	}
+
+	emptySlice := []string{}
+	filteredStrSlice, err = filterStrings(emptySlice)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Strings com mais de 5 caracteres:", filteredStrSlice)
+	}
+}
